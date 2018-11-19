@@ -1,0 +1,27 @@
+
+<div class='container'>
+        <table class="table table-bordered">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td>{{product._id}}</td>
+                    <td>{{product.title | titlecase}}</td>
+                    <td>{{product.qty}}</td>
+                    <td>{{product.price | currency:'USD'}}</td>
+                    <td>
+                        <div class="">
+                          <button [routerLink] = '["/products", product._id]'  class='btn btn-info align-bottom mr-1'>Details</button>
+                          <button [routerLink] = '["/edit", product._id]'  class='btn btn-warning align-bottom ml-1'>Edit</button>
+                          <button (click)='destroyProduct(product)' [disabled]='product.qty' class='btn btn-danger ml-1'>Remove</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>

@@ -1,0 +1,31 @@
+<div class="container text-center">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th colspan="3">Product Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Product Name</td>
+      <td colspan="3">{{product.title}}</td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td colspan="3">{{product.price | currency:'USD'}}</td>
+    </tr>
+    <tr>
+      <td>Quantity</td>
+      <td colspan="3">{{product.qty}}</td>
+    </tr>
+    <tr>
+      <td colspan="3">Note: Product can only be removed if the quantity is at 0. Due to poor UX design choices.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<a [routerLink]="['/products']"><button class="btn btn-primary ml-2 mb-2">Back</button></a>
+<button (click)='destroyProduct(product)' [disabled]='product.qty' class='btn btn-danger ml-4 mb-2'>Remove</button>
+</div>

@@ -1,0 +1,56 @@
+<div class="container col-md-4">
+    <form name="newProductForm" #newProductForm="ngForm" (submit)="postNewProduct()">
+
+      <label for="baker">Product Name:</label>
+      <input class="form-control" type="text" name="newProduct.title" placeholder="Product Title"
+      [(ngModel)]="newProduct.title"
+      #title='ngModel'
+      required
+      minlength='4'>
+      <div *ngIf='title.invalid' class='alert alert-danger'>
+        <div *ngIf='title.errors.required'>
+          Title is required
+        </div>
+        <div *ngIf='title.errors.minlength'>
+          Must be 4 characters
+        </div>
+      </div>
+
+      <label for="baker">Price:</label>
+      <input class="form-control" type="string" name="newProduct.price" placeholder="Product Title"
+      [(ngModel)]="newProduct.price"
+      #price='ngModel'
+      required
+      pattern="[0-9]+(\.[0-9][0-9]){0,25}">
+      <div *ngIf='price.invalid' class='alert alert-danger'>
+         <div *ngIf='price.errors.required'>
+          Price is required
+        </div>
+        <div *ngIf='price.errors.pattern'>
+         Cannot be a negative value or requires 2 decimal places
+       </div>
+      </div>
+
+      <label for="qty">Quantity:</label>
+      <input class="form-control" type="number" name="newProduct.qty" placeholder="Quantity"
+      [(ngModel)]="newProduct.qty"
+      #qty='ngModel'
+      required
+      pattern="[0-9]{0,25}">
+      <div *ngIf='qty.invalid' class='alert alert-danger'>
+         <div *ngIf='qty.errors.required'>
+          Quantity is required
+        </div>
+        <div *ngIf='qty.errors.pattern'>
+         Quantity cannot be a negative or decimal
+       </div>
+      </div>
+
+
+      <div class="col-12 text-center mt-2">
+        <input [disabled]="!newProductForm.valid" id="updateButton"  class="btn ml-5 mb-2" type="submit" value="Create">
+        <button class='btn btn-primary ml-5 mb-2' [routerLink]='["/products"]'>Cancel</button>
+      </div>
+
+    </form>
+</div>
